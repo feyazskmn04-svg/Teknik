@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teknik Direktör V1</title>
+<style>
+:root{--bg:#06101a;--panel:#0d1b28;--panel2:#112436;--line:#274055;--txt:#f4f8fb;--muted:#91a7b8;--gold:#f5c518;--green:#54d33f;--red:#ff5353;--blue:#42a9ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 70% 0,#17364c 0,#07121d 40%,#040a10 100%);color:var(--txt);font-family:Inter,system-ui,Arial,sans-serif}button{border:0;border-radius:10px;padding:11px 14px;background:#173047;color:#fff;font-weight:800;cursor:pointer}button:hover{filter:brightness(1.18)}.gold{background:#c59b00}.green{background:#267f2b}.red{background:#8e2828}.blue{background:#145c91}
+.app{min-height:100vh;display:grid;grid-template-columns:205px 1fr}.side{background:#07131e;border-right:1px solid var(--line);padding:16px 10px}.brand{font-weight:950;font-size:18px;margin:7px 10px 20px}.brand b{color:var(--gold)}.nav button{width:100%;background:transparent;text-align:left;color:#c7d6e1;margin:3px 0}.nav button.active{background:#1b3448;color:var(--gold)}
+.main{width:100%;max-width:1550px;margin:auto;padding:16px}.top{display:flex;justify-content:space-between;gap:14px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:14px}.stats{display:flex;gap:9px;flex-wrap:wrap}.stat{background:var(--panel);border:1px solid var(--line);padding:9px 12px;border-radius:11px}.stat b{display:block;font-size:17px}.muted,.small{color:var(--muted);font-size:12px}.page{margin-top:14px}.hidden{display:none}.grid{display:grid;grid-template-columns:1.2fr .9fr .9fr;gap:12px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:15px}.hero{min-height:230px;background:radial-gradient(circle at 80% 15%,#275676,transparent 34%),linear-gradient(135deg,#112a3e,#09131d)}h1,h2,h3{margin-top:0}.big{font-size:31px;font-weight:950}.tag,.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:900}.tag{background:#203c51;color:#d7e7f2}.good{background:#173d24;color:#7bff7b}.warn{background:#4a3d12;color:#ffe06a}.bad{background:#4b1e1e;color:#ff9696}.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1d3040}.row:last-child{border-bottom:0}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:8px;border-bottom:1px solid #203544}th{font-size:11px;color:var(--muted)}.bar{height:8px;background:#182c3c;border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green)}.score{font-size:30px;font-weight:950}.actions{display:flex;gap:8px;flex-wrap:wrap}.feed{max-height:230px;overflow:auto}.feed div{padding:9px 0;border-bottom:1px solid #1c3040}.modal{position:fixed;inset:0;background:#000c;display:flex;align-items:center;justify-content:center;padding:18px;z-index:20}.modalbox{width:min(680px,100%);background:#0d1c29;border:1px solid #3b5b72;border-radius:16px;padding:20px;box-shadow:0 25px 80px #000}.choice{display:grid;gap:8px;margin:14px 0}.toast{position:fixed;right:16px;bottom:16px;background:#112b3c;border:1px solid #39627d;padding:13px 16px;border-radius:12px;z-index:30}.matchbox{display:grid;grid-template-columns:1fr 180px 1fr;gap:10px;align-items:center;text-align:center}.team{font-size:24px;font-weight:950}.versus{font-size:18px;color:var(--muted)}.locked{opacity:.45}.player{display:flex;align-items:center;gap:10px}.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#2a5d7e,#172b3d);display:grid;place-items:center;font-weight:900}.statline{display:grid;grid-template-columns:1fr 1fr;gap:8px}.statline div{background:#0a1722;border:1px solid #1c3345;padding:8px;border-radius:9px}.replay{background:#050d14;border:1px dashed #3b5568;border-radius:10px;padding:12px;margin-top:10px}.replay b{color:var(--gold)}
+@media(max-width:950px){.app{grid-template-columns:1fr}.side{position:sticky;top:0;z-index:10;overflow:auto}.brand{display:none}.nav{display:flex;gap:4px}.nav button{width:auto;white-space:nowrap}.grid,.grid2{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}.matchbox{grid-template-columns:1fr}.main{padding:10px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+<div class="brand">⚽ <b>TEKNİK DİREKTÖR</b></div>
+<div class="nav">
+<button class="active" onclick="show('home',this)">🏠 Ana Sayfa</button>
+<button onclick="show('squad',this)">👥 Kadro</button>
+<button onclick="show('league',this)">🏆 Lig</button>
+<button onclick="show('transfer',this)">🔄 Transfer</button>
+<button onclick="show('scout',this)">🕵️ Scout</button>
+<button onclick="show('match',this)">🏟️ Maç</button>
+<button onclick="show('world',this)">🌍 Dünya</button>
+</div>
+</aside>
+
+<main class="main">
+<header class="top">
+<div><div class="muted">TEKNİK DİREKTÖR • V1</div><h1 style="margin:2px 0">Feyaz Sökmen</h1><div class="small">Fenerbahçe • Sezon 1 • Seviye <span id="level">1</span></div></div>
+<div class="stats">
+<div class="stat">⭐ Şöhret<b id="fame">350</b></div><div class="stat">💰 Bütçe<b id="budget">€50.0M</b></div><div class="stat">📈 Yönetim<b id="board">72%</b></div><div class="stat">😊 Moral<b id="morale">84%</b></div>
+<button class="gold" onclick="advanceDay()">GÜNÜ İLERLET ▶</button><button onclick="saveGame()">💾 KAYDET</button>
+</div>
+</header>
+
+<section id="home" class="page">
+<div class="grid">
+<div class="card hero"><span class="tag">KARİYER</span><div class="big">Kendi futbol hikâyeni yaz.</div><p class="small">Maç kazan, gençleri geliştir, transfer pazarlığı yap ve büyük kulüplerin kilidini aç.</p><div class="actions"><button class="gold" onclick="show('match')">MAÇA GİT</button><button onclick="show('transfer')">TRANSFER MERKEZİ</button></div></div>
+<div class="card"><h3>🎯 Sezon Hedefleri</h3><div class="row"><span>Lig ilk 3</span><b id="goalLeague">0/3</b></div><div class="row"><span>10 galibiyet</span><b id="winsGoal">0/10</b></div><div class="bar"><i id="goalbar" style="width:0%"></i></div><p class="small">Başarı puanı: <b id="seasonPts">0</b></p></div>
+<div class="card"><h3>📅 Takvim</h3><div class="score" id="date">15 Ağustos 2026</div><p class="small">Sıradaki maç: Beşiktaş • 19:00</p><button class="green" onclick="show('match')">MAÇA HAZIRLAN</button></div>
+</div>
+<div class="grid2">
+<div class="card"><h3>📰 Futbol Dünyası</h3><div id="news" class="feed"></div></div>
+<div class="card"><h3>👥 Soyunma Odası</h3><div class="row"><span>Takım morali</span><span class="pill good" id="moralePill">YÜKSEK</span></div><div class="row"><span>İrfan Can</span><span>😊 Mutlu</span></div><div class="row"><span>Fred</span><span class="pill warn">Forma bekliyor</span></div><div class="row"><span>Genç Yetenek</span><span class="pill good">Gelişiyor</span></div></div>
+</div>
+</section>
+
+<section id="squad" class="page hidden"><div class="card"><h2>👥 Kadro</h2><table><thead><tr><th>Oyuncu</th><th>Poz.</th><th>OVR</th><th>POT.</th><th>Form</th><th>Rol</th></tr></thead><tbody id="squadBody"></tbody></table></div></section>
+
+<section id="league" class="page hidden">
+<div class="grid">
+<div class="card"><h2>🏆 Süper Lig</h2><table><thead><tr><th>#</th><th>Takım</th><th>O</th><th>G</th><th>P</th></tr></thead><tbody id="tableBody"></tbody></table></div>
+<div class="card"><h2>📊 Sezon</h2><div class="row"><span>Oynanan</span><b id="played">0</b></div><div class="row"><span>Galibiyet</span><b id="wins">0</b></div><div class="row"><span>Beraberlik</span><b id="draws">0</b></div><div class="row"><span>Mağlubiyet</span><b id="losses">0</b></div><div class="row"><span>Atılan gol</span><b id="gf">0</b></div><div class="row"><span>Yenilen gol</span><b id="ga">0</b></div></div>
+<div class="card"><h2>🔒 Büyük Kulüpler</h2><div class="row"><span>Real Madrid</span><span id="realLock" class="pill warn">⭐ 7.500</span></div><div class="row"><span>Manchester City</span><span class="pill warn">⭐ 5.000</span></div><div class="row"><span>Barcelona</span><span class="pill warn">⭐ 6.500</span></div></div>
+</div>
+</section>
+
+<section id="transfer" class="page hidden">
+<div class="grid2">
+<div class="card"><h2>🔄 Transfer Pazarı</h2><div id="market"></div><button class="gold" onclick="makeOffer()">PAZARLIK YAP</button></div>
+<div class="card"><h2>📨 Gelen Teklif</h2><div id="offer">Henüz teklif yok.</div><div class="actions"><button class="green" onclick="acceptOffer()">KABUL ET</button><button class="red" onclick="rejectOffer()">REDDET</button></div></div>
+</div>
+</section>
+
+<section id="scout" class="page hidden">
+<div class="grid">
+<div class="card"><h2>🕵️ Scout Merkezi</h2><p class="small">Bölge: Güney Amerika • Yaş: 15-20 • Potansiyel: 80+</p><button class="gold" onclick="runScout()">OYUNCU ARA</button></div>
+<div class="card"><h2>🌟 Son Rapor</h2><div id="scoutResult">Henüz rapor yok.</div></div>
+<div class="card"><h2>🎯 Scout Güveni</h2><div class="score" id="scoutConfidence">—</div><p class="small">Scout seviyen arttıkça gizli potansiyeller daha doğru tahmin edilir.</p></div>
+</div>
+</section>
+
+<section id="match" class="page hidden">
+<div class="card">
+<h2>🏟️ Süper Lig — Hafta 6</h2>
+<div class="matchbox"><div><div class="team">FENERBAHÇE</div><div class="small">Ülker Stadyumu</div></div><div><div class="score" id="matchScore">-</div><div class="versus">VS</div></div><div><div class="team">BEŞİKTAŞ</div><div class="small">19:00</div></div></div>
+<div class="grid2" style="margin-top:14px">
+<div class="card"><h3>🧠 Taktik</h3><div class="actions"><button onclick="setTactic('Hücum')">🚀 Hücum</button><button onclick="setTactic('Dengeli')">⚖️ Dengeli</button><button onclick="setTactic('Defans')">🛡️ Defans</button></div><p class="small">Seçim: <b id="tactic">Dengeli</b></p></div>
+<div class="card"><h3>🎮 Maç Motoru</h3><p class="small">Maç sırasında önemli olaylar üretilecek ve goller için kısa tekrarlar gösterilecek.</p><button class="gold" onclick="playMatch()">MAÇI BAŞLAT</button></div>
+</div>
+<div class="card" style="margin-top:12px"><h3>📺 Maç Akışı</h3><div id="commentary" class="feed">Maç henüz başlamadı.</div><div id="replay" class="replay hidden"></div></div>
+</div>
+</section>
+
+<section id="world" class="page hidden">
+<div class="grid">
+<div class="card hero"><span class="tag">🌍 MİLLİ TAKIM</span><div class="big">Dünya Kupası kariyeri</div><p class="small">Şöhretin yeterince yükseldiğinde milli takım teklifleri açılır.</p><button class="gold" onclick="worldCup()">DÜNYA KUPASI</button></div>
+<div class="card"><h3>🏆 Avrupa</h3><div class="row"><span>Şampiyonlar Ligi</span><span id="ucl" class="pill warn">🔒</span></div><div class="row"><span>Avrupa Ligi</span><span class="pill warn">🔒</span></div><div class="row"><span>Konferans Ligi</span><span class="pill warn">🔒</span></div></div>
+<div class="card"><h3>🌎 Dünya Futbolu</h3><div class="row"><span>Premier League</span><span class="pill good">AKTİF</span></div><div class="row"><span>La Liga</span><span class="pill good">AKTİF</span></div><div class="row"><span>Serie A</span><span class="pill good">AKTİF</span></div></div>
+</div>
+</section>
+</main>
+</div>
+
+<div id="modal" class="modal hidden"><div class="modalbox"><h2 id="modalTitle"></h2><p id="modalText"></p><div id="modalChoices" class="choice"></div><button onclick="closeModal()">KAPAT</button></div></div>
+<div id="toast" class="toast hidden"></div>
+
+<script>
+const baseSquad=[
+['İrfan Can Kahveci','MO',82,84,'Çok iyi','Yıldız'],['Edin Džeko','ST',83,83,'İyi','Lider'],['Sebastian Szymański','MO',81,88,'Çok iyi','Kilit'],['Fred','MO',80,80,'Orta','Kilit'],['Ferdi Kadıoğlu','SLB',84,89,'Çok iyi','Kilit'],['Genç Yetenek','MO',67,89,'Gelişiyor','Gelişim']
+];
+let S={fame:350,budget:50,board:72,morale:84,level:1,played:0,wins:0,draws:0,losses:0,gf:0,ga:0,seasonPts:0,goalTop3:0,date:15,month:7,year:2026,tactic:'Dengeli',scout:1,offer:null};
+const clubs=[['Fenerbahçe',0,0,0],['Galatasaray',0,0,0],['Beşiktaş',0,0,0],['Trabzonspor',0,0,0],['Başakşehir',0,0,0],['Samsunspor',0,0,0],['Kasımpaşa',0,0,0],['Antalyaspor',0,0,0]];
+const market=[['Yıldız Santrafor','ST',86,91,42],['Hızlı Kanat #7','KNT',79,87,12],['Genç Oyun Kurucu','MO',72,90,6],['Defans Lideri','STP',82,83,18]];
+const $=id=>document.getElementById(id);
+function money(x){return '€'+x.toFixed(1)+'M'}
+function show(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));$(id).classList.remove('hidden');if(btn){document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}}
+function toast(t){$('toast').textContent=t;$('toast').classList.remove('hidden');setTimeout(()=>$('toast').classList.add('hidden'),3000)}
+function render(){
+$('fame').textContent=S.fame.toLocaleString('tr-TR');$('budget').textContent=money(S.budget);$('board').textContent=S.board+'%';$('morale').textContent=S.morale+'%';$('level').textContent=S.level;
+$('played').textContent=S.played;$('wins').textContent=S.wins;$('draws').textContent=S.draws;$('losses').textContent=S.losses;$('gf').textContent=S.gf;$('ga').textContent=S.ga;$('seasonPts').textContent=S.seasonPts;
+$('winsGoal').textContent=S.wins+'/10';$('goalLeague').textContent=Math.min(3,S.wins)+'/3';$('goalbar').style.width=(Math.min(3,S.wins)/3*100)+'%';
+$('date').textContent=S.date+' '+['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'][S.month]+' '+S.year;
+$('moralePill').textContent=S.morale>=75?'YÜKSEK':S.morale>=50?'ORTA':'DÜŞÜK';$('moralePill').className='pill '+(S.morale>=75?'good':S.morale>=50?'warn':'bad');
+$('realLock').textContent=S.fame>=7500?'🔓 AÇIK':'⭐ 7.500';$('ucl').textContent=S.fame>=2500?'🔓 AÇIK':'🔒';
+renderSquad();renderTable();renderMarket();
+}
+function renderSquad(){$('squadBody').innerHTML=baseSquad.map(p=>`<tr><td><div class="player"><span class="avatar">${p[0][0]}</span>${p[0]}</div></td><td>${p[1]}</td><td>${p[2]}</td><td>${p[3]}</td><td><span class="pill ${p[4]=='Çok iyi'||p[4]=='Gelişiyor'?'good':'warn'}">${p[4]}</span></td><td>${p[5]}</td></tr>`).join('')}
+function renderTable(){let arr=clubs.map(x=>({...x}));arr[0][1]=S.played;arr[0][2]=S.wins;arr[0][3]=S.wins*3+S.draws;arr.sort((a,b)=>b[3]-a[3]);$('tableBody').innerHTML=arr.map((x,i)=>`<tr><td>${i+1}</td><td>${x[0]}</td><td>${x[1]}</td><td>${x[2]}</td><td><b>${x[3]}</b></td></tr>`).join('')}
+function renderMarket(){$('market').innerHTML=market.map((p,i)=>`<div class="row"><span><b>${p[0]}</b><br><span class="small">${p[1]} • OVR ${p[2]} • POT ${p[3]}</span></span><b>${money(p[4])}</b></div>`).join('')}
+function news(t){$('news').insertAdjacentHTML('afterbegin','<div>'+t+'</div>');while($('news').children.length>7)$('news').lastChild.remove()}
+function advanceDay(){
+S.date++;if(S.date>30){S.date=1;S.month++;if(S.month>11){S.month=0;S.year++}}
+S.fame+=15+Math.floor(Math.random()*30);S.morale=Math.max(40,Math.min(100,S.morale+(Math.random()<.6?2:-2)));
+if(Math.random()<.25){S.offer={player:'Sebastian Szymański',price:18+Math.floor(Math.random()*15)};news('🚨 <b>Teklif:</b> '+S.offer.player+' için '+money(S.offer.price)+' teklif geldi.');$('offer').innerHTML='💰 <b>'+S.offer.player+'</b> için <b>'+money(S.offer.price)+'</b> teklif.'}
+else news(['📰 Scout ekibi yeni bir genç yetenek buldu.','📰 Taraftarlar derbi için heyecanlı.','📰 Yönetim sezon hedeflerini tekrar hatırlattı.','📰 Avrupa kulüpleri transfer piyasasını hareketlendirdi.'][Math.floor(Math.random()*4)]);
+if(S.fame>=1000&&S.level<2){S.level=2;news('⭐ <b>Teknik direktör seviyesi 2!</b>');}
+if(S.fame>=2500&&S.level<3){S.level=3;news('🌍 <b>Büyük kulüpler ve milli takım ilgisi açıldı!</b>');}
+render();toast('Gün ilerledi. Futbol dünyasında yeni gelişmeler var.');
+}
+function setTactic(t){S.tactic=t;$('tactic').textContent=t;toast('Taktik: '+t)}
+function playMatch(){
+$('commentary').innerHTML='';$('replay').classList.add('hidden');
+let a=1+Math.floor(Math.random()*3),b=Math.floor(Math.random()*3);
+if(S.tactic==='Hücum'){a++;if(Math.random()<.35)b++}if(S.tactic==='Defans'){b=Math.max(0,b-1);a=Math.max(0,a-1)}
+const events=['⚡ 12’ Kanattan hızlı hücum!','🧤 27’ Kaleci kritik kurtarış yaptı.','🔥 41’ Ceza sahasında büyük tehlike!','🎯 63’ Şut direğin yanından çıktı.','🚨 78’ Gol için VAR kontrolü!'];
+events.forEach((e,i)=>setTimeout(()=>{$('commentary').insertAdjacentHTML('afterbegin','<div>'+e+'</div>')},i*180));
+S.played++;S.gf+=a;S.ga+=b;
+if(a>b){S.wins++;S.seasonPts+=3;S.fame+=150;S.board=Math.min(100,S.board+5);S.morale=Math.min(100,S.morale+5);setTimeout(()=>goalReplay(a,b),1000);news('🏆 <b>Galibiyet!</b> Fenerbahçe derbiyi kazandı.');}
+else if(a===b){S.draws++;S.seasonPts++;S.fame+=40;S.morale=Math.max(0,S.morale-1);news('🤝 Fenerbahçe berabere kaldı.')}
+else{S.losses++;S.fame=Math.max(0,S.fame-30);S.board=Math.max(0,S.board-6);S.morale=Math.max(0,S.morale-7);news('❌ <b>Mağlubiyet.</b> Yönetim açıklama bekliyor.')}
+$('matchScore').textContent=a+' - '+b;render();toast('Maç tamamlandı.');
+}
+function goalReplay(a,b){
+$('replay').classList.remove('hidden');$('replay').innerHTML='<b>🎥 GOL TEKRARI</b><br>Top orta sahadan çıkarıldı → kanada açıldı → savunma arkasına koşu → kaleciyle karşı karşıya → <b>GOL!</b> ⚽<br><span class="small">Tekrarı 2D maç motoru yerine kısa sinematik anlatımla gösteriyoruz; sonraki sürümde gerçek animasyon eklenebilir.</span>';
+}
+function makeOffer(){
+const p=market[Math.floor(Math.random()*market.length)],offer=Math.max(3,p[4]-Math.floor(Math.random()*5));
+if(S.budget<offer){toast('Bu teklif için bütçen yetmiyor.');return}
+openModal('Transfer Pazarlığı',p[0]+' için ilk teklifin '+money(offer)+'. Kulübün tepkisi ne olsun?',[
+['Teklifi gönder',()=>{S.budget-=offer;toast(p[0]+' için görüşme açıldı!');}],
+['Bonus ekle',()=>{S.budget-=Math.max(1,offer-1);toast('Bonuslu teklif gönderildi.');}],
+['Vazgeç',()=>toast('Transferden vazgeçildi.')]
+]);
+}
+function acceptOffer(){if(!S.offer){toast('Henüz gelen teklif yok.');return}S.budget+=S.offer.price;news('💰 <b>Transfer gerçekleşti:</b> '+S.offer.player+' satıldı.');S.fame+=60;S.offer=null;$('offer').textContent='Henüz teklif yok.';render();toast('Oyuncu satıldı. Bütçeye para eklendi.')}
+function rejectOffer(){if(!S.offer){toast('Henüz gelen teklif yok.');return}news('🛑 Gelen teklif reddedildi.');S.morale+=2;S.offer=null;$('offer').textContent='Henüz teklif yok.';render();toast('Teklif reddedildi.')}
+function runScout(){
+const names=['Kauã Souza','Emirhan Demir','Luka Marin','Yusuf Arslan','Matías Costa'];const name=names[Math.floor(Math.random()*names.length)],pot=82+Math.floor(Math.random()*11),conf=78+S.scout*4+Math.floor(Math.random()*10);
+$('scoutResult').innerHTML='<div class="player"><span class="avatar">'+name[0]+'</span><div><b>'+name+'</b><br><span class="small">17 yaş • Ofansif Orta Saha</span></div></div><div class="statline" style="margin-top:10px"><div>Potansiyel<br><b>'+pot+'+</b></div><div>Piyasa<br><b>€'+(2+Math.random()*7).toFixed(1)+'M</b></div></div><p><span class="pill good">Gizli yetenek adayı</span></p>';
+$('scoutConfidence').textContent=Math.min(99,conf)+'%';S.fame+=10;toast('Scout raporu hazırlandı.');render();
+}
+function worldCup(){
+if(S.fame<2500){openModal('🌍 Dünya Kupası','Milli takım yolu henüz kilitli. En az 2.500 şöhrete ulaş ve Avrupa seviyesinde başarı kazan.',[['Kariyere dön',()=>{}]]);return}
+openModal('🏆 Dünya Kupası','Türkiye teknik direktörlüğü için görüşme daveti geldi. Elemelerden başlayıp finale kadar ilerleyebilirsin.',[
+['Teklifi kabul et',()=>{S.fame+=250;S.morale=100;news('🇹🇷 <b>Türkiye Milli Takımı</b> teklifini kabul ettin!');toast('Milli takım kariyeri açıldı!')}],
+['Daha sonra',()=>toast('Teklif beklemeye alındı.')]
+]);
+}
+function openModal(t,txt,choices){$('modalTitle').textContent=t;$('modalText').textContent=txt;$('modalChoices').innerHTML='';choices.forEach(c=>{let b=document.createElement('button');b.textContent=c[0];b.onclick=()=>{c[1]();closeModal();render()};$('modalChoices').appendChild(b)});$('modal').classList.remove('hidden')}
+function closeModal(){$('modal').classList.add('hidden')}
+function saveGame(){localStorage.setItem('tdv1',JSON.stringify(S));toast('Kariyer kaydedildi.');}
+function loadGame(){let x=localStorage.getItem('tdv1');if(x){S=JSON.parse(x);toast('Kariyer geri yüklendi.')}render()}
+render();loadGame();news('👋 <b>Hoş geldin hoca!</b> İlk hedef: ligi ilk 3’te bitirmek.');news('📰 Transfer dönemi açık. Scout ekibin hazır.');news('🏟️ İlk derbi yaklaşıyor: Beşiktaş maçı.');
+</script>
+</body>
+</html>
